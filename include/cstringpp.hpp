@@ -101,14 +101,14 @@ protected:
     std::array<char, Length> m_str{};
 };
 
-constexpr int toLower(char in) {
+[[nodiscard]] constexpr int toLower(char in) {
     if (in >= 'A' && in <= 'Z') {
         return in + 32;
     }
     return in;
 }
 
-constexpr int toUpper(char in) {
+[[nodiscard]] constexpr int toUpper(char in) {
     if (in >= 'a' && in <= 'z') {
         return in - 32;
     }
