@@ -4,7 +4,10 @@ set(CMAKE_CXX_STANDARD 20)
 include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} INTERFACE)
-target_sources(${PROJECT_NAME} INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/cstringpp.hpp>")
+target_sources(${PROJECT_NAME} INTERFACE
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/cstringpp/core.hpp>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/cstringpp/helpers.hpp>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/cstringpp.hpp>")
 target_include_directories(${PROJECT_NAME} SYSTEM INTERFACE $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include>)
 
 option(CSTRINGPP_BUILD_TESTS "Build test program for CStringPP" OFF)
