@@ -1,29 +1,13 @@
 #pragma once
 
 #include <cstddef>
-#include <cstring>
 #include <array>
 #include <compare>
 #include <utility>
 
-#include "helpers.hpp"
+#include "detail.hpp"
 
 namespace cstringpp {
-
-namespace detail {
-
-template<size_t Length>
-constexpr size_t getPositiveIndex(int index) {
-    while (index < 0) {
-        index += Length;
-    }
-    while (index >= Length) {
-        index -= Length;
-    }
-    return index;
-}
-
-} // namespace detail
 
 template<size_t Length>
 class String {
@@ -129,11 +113,11 @@ public:
     }
 
     [[nodiscard]] constexpr String<Length> toLower() const {
-        return map(&cstringpp::toLower);
+        return map(&cstringpp::detail::toLower);
     }
 
     [[nodiscard]] constexpr String<Length> toUpper() const {
-        return map(&cstringpp::toUpper);
+        return map(&cstringpp::detail::toUpper);
     }
 
     [[nodiscard]] constexpr String<Length> reverse() const {

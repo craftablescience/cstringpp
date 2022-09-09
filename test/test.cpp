@@ -54,10 +54,10 @@ TEST(String, slice) {
 }
 
 TEST(String, map) {
-    constexpr String str1 = String{"HElLo"}.map([](char c) { return cstringpp::toUpper(c); });
+    constexpr String str1 = String{"HElLo"}.map([](char c) { return cstringpp::detail::toUpper(c); });
     EXPECT_STREQ(str1.toCString(), "HELLO");
 
-    constexpr String str2 = String{"HElLo"}.map(&cstringpp::toLower);
+    constexpr String str2 = String{"HElLo"}.map(&cstringpp::detail::toLower);
     EXPECT_STREQ(str2.toCString(), "hello");
 }
 

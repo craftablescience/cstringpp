@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cstringpp {
+namespace cstringpp::detail {
 
 [[nodiscard]] constexpr char toLower(char in) {
     if (in >= 'A' && in <= 'Z') {
@@ -14,6 +14,17 @@ namespace cstringpp {
         return static_cast<char>(in - 32);
     }
     return in;
+}
+
+template<size_t Length>
+constexpr size_t getPositiveIndex(int index) {
+    while (index < 0) {
+        index += Length;
+    }
+    while (index >= Length) {
+        index -= Length;
+    }
+    return index;
 }
 
 } // namespace cstringpp

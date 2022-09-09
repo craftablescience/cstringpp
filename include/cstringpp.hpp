@@ -1,4 +1,4 @@
 #pragma once
 
 #include "cstringpp/core.hpp"
-#include "cstringpp/helpers.hpp"
+#include "cstringpp/detail.hpp"
