@@ -20,9 +20,9 @@ if(CSTRINGPP_BUILD_TESTS)
     FetchContent_MakeAvailable(googletest)
     enable_testing()
 
-    add_executable(${PROJECT_NAME}_test test/test.cpp)
+    add_executable(${PROJECT_NAME}_test ${CMAKE_CURRENT_SOURCE_DIR}/test/test.cpp)
     target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME} gtest_main)
-    target_include_directories(${PROJECT_NAME}_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+    target_include_directories(${PROJECT_NAME}_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
     include(GoogleTest)
     gtest_discover_tests(${PROJECT_NAME}_test)
