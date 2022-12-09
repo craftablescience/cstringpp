@@ -157,15 +157,11 @@ template<size_t... Lengths>
 [[nodiscard]] constexpr auto strcat(const String<Lengths>&... strings) {
     // We need to strip null terminators from every string except the last
     // Also resize the result array so it doesn't have extra chars at the end
-    constexpr int NumArgsMinus1 = (Lengths + ...) + 1 - [] {
-        int numArgs = 0;
-        ((Lengths, numArgs++), ...);
-        return numArgs;
-    }();
-    std::array<char, NumArgsMinus1> result;
+    constexpr int CombinedLength = (Lengths + ...) + 1 - sizeof...(strings);
+    std::array<char, CombinedLength> result;
     size_t index = 0;
     ((std::copy_n(strings.begin(), Lengths, result.begin() + index), index += Lengths - 1), ...);
-    return String<NumArgsMinus1>{result};
+    return String<CombinedLength>{result};
 }
 
 template<size_t Length1, size_t Length2>
